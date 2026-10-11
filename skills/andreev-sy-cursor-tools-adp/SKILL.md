@@ -52,22 +52,24 @@ Cursor has **no** custom skill form UI. `AskQuestion` cards often missing in Age
 
 If the user only invoked this skill (or message has no clear Need + constraints):
 
-1. Optionally try `AskQuestion` **once** (Russian labels). If unavailable / fails → step 2.
-2. **Default:** post exactly this fill-in block (Russian), then **stop and wait**. No code. No long preface.
+1. Skip AskQuestion for intake (unreliable in Agent).
+2. Reply with **only** the fill-in below, then **stop and wait**.
+   - Must be a **fenced code block** (` ```text ` … ` ``` `).
+   - **One field per line.** Never collapse Need/Anchor/Prove/Нельзя into one paragraph.
+   - No preface longer than one short sentence. No English option ids.
 
-````markdown
-Заполни и пришли одним сообщением:
+Exact payload (copy structure, keep newlines):
 
-**Need:** (что должно заработать)
-**Anchor:** (путь/сосед) или напиши: найди в репо
-**Prove:** `project.md` | команда: … | нужен bootstrap
-**Нельзя:** (через запятую, что актуально)
-- новый framework
-- one-off скрипт
-- rewrite подсистемы
-- обход слоя якоря
-- (другое: …)
 ````
+```text
+Need:
+Anchor: найди в репо
+Prove: project.md
+Нельзя: новый framework, one-off скрипт, rewrite подсистемы, обход слоя якоря
+```
+````
+
+User edits that block (or pastes a filled copy) and sends it back.
 
 3. After they reply → Intent → Acceptance. Still vague → Clarify (STOP E).
 
