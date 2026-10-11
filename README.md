@@ -1,83 +1,46 @@
 # Cursor Agent Kit — ADP
 
-Методология **Anchor → Delta → Prove**: рабочий дифф в проекте, не демо-урок.  
-Документ: после установки — `.cursor/kits/cursor-tools/ADP.md` (в этом репо исходник [ADP.md](ADP.md)).
+Методология **Acceptance → Anchor → Delta → Prove**: полный дифф в пути проекта, не демо и не «зелёный lint при недоделке».  
+После установки: `.cursor/kits/andreev-sy/cursor-tools/ADP.md`.
 
 Репозиторий: https://github.com/andreev-sy/cursor-tools
 
-## Установка из GitHub (в корень вашего проекта)
+## Установка (из корня вашего проекта)
 
 **Linux / macOS / Git Bash:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/andreev-sy/cursor-tools/main/install-remote.sh | bash
+curl -fsSL https://raw.githubusercontent.com/andreev-sy/cursor-tools/master/install-remote.sh | bash
 # или:
-wget -qO- https://raw.githubusercontent.com/andreev-sy/cursor-tools/main/install-remote.sh | bash
-# принудительно обновить:
-curl -fsSL https://raw.githubusercontent.com/andreev-sy/cursor-tools/main/install-remote.sh | bash -s -- --force
+wget -qO- https://raw.githubusercontent.com/andreev-sy/cursor-tools/master/install-remote.sh | bash
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-Invoke-WebRequest "https://raw.githubusercontent.com/andreev-sy/cursor-tools/main/install-remote.ps1" -OutFile "$env:TEMP\adp-install-remote.ps1"
-& "$env:TEMP\adp-install-remote.ps1" -Repo "andreev-sy/cursor-tools"
-# обновить с перезаписью:
-& "$env:TEMP\adp-install-remote.ps1" -Repo "andreev-sy/cursor-tools" -Force
+Invoke-WebRequest "https://raw.githubusercontent.com/andreev-sy/cursor-tools/master/install-remote.ps1" -OutFile "$env:TEMP\cursor-tools-install.ps1"
+& "$env:TEMP\cursor-tools-install.ps1"
 ```
 
-Namespace по умолчанию: **`cursor-tools`** (имя репозитория).  
-Переопределение: `KIT_NAME=my-kit` / `-Name my-kit`.
+Переустанавливает namespace `andreev-sy/cursor-tools` (полная перезапись этих папок).
 
-## Куда кладутся файлы (не смешиваются с проектом)
+## Куда кладутся файлы
 
 ```text
 your-project/
   .cursor/
-    kits/
-      cursor-tools/           ← всё содержимое kit
-        ADP.md
-        examples/
-        templates/
-        skills/
-        ...
+    kits/andreev-sy/cursor-tools/     ← ADP.md, examples, templates, skills
     skills/
-      cursor-tools-adp/                 ← /cursor-tools-adp
-      cursor-tools-project-bootstrap/   ← /cursor-tools-project-bootstrap
-  AGENTS.md   ← только если вы сами прогоните bootstrap (это уже ваш файл проекта)
+      andreev-sy-cursor-tools-adp/
+      andreev-sy-cursor-tools-project-bootstrap/
+  AGENTS.md   ← ссылка на project.md (создаётся или дополняется, не затирается)
 ```
 
-В корне проекта kit **не** создаёт `ADP.md` и прочие файлы методологии.
+Skills в Cursor без `/` в имени папки → `andreev-sy-cursor-tools-*`.  
+Файлы kit — по полному пути репо: `andreev-sy/cursor-tools`.
 
-## Локальная установка (без сети)
+## Как пользоваться
 
-```powershell
-.\install.ps1 -Target "C:\path\to\project" -Force
-.\install.ps1 -User -Force
-```
-
-```bash
-./install.sh /path/to/project --force
-./install.sh --user --force
-./install.sh --name cursor-tools --force
-```
-
-## Кнут и сценарий
-
-1. `/cursor-tools-project-bootstrap` — один раз, короткий корневой `AGENTS.md`.  
-2. `/cursor-tools-adp` — задачи по ADP (якорь → дельта → оракул → код → стоп).  
-3. Пример промпта: `.cursor/kits/cursor-tools/examples/prompt-adp.md`.
-
-## Состав репозитория
-
-```
-ADP.md
-kit.conf
-install.sh / install.ps1
-install-remote.sh / install-remote.ps1
-skills/adp/
-skills/project-bootstrap/
-templates/
-examples/
-README.md
-```
+1. `/andreev-sy-cursor-tools-project-bootstrap` — пишет `.cursor/kits/andreev-sy/cursor-tools/project.md` и ссылку в `AGENTS.md`.  
+2. `/andreev-sy-cursor-tools-adp` — откроет карточки выбора (AskQuestion), затем Need/Anchor в чате; см. `examples/prompt-adp.md`.  
+3. Кастомной HTML-формы у skills в Cursor нет — только AskQuestion + чат.

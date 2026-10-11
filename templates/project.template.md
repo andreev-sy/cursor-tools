@@ -1,6 +1,6 @@
-# AGENTS.md
+# andreev-sy/cursor-tools project
 
-Short always-on facts for ADP Prove. Keep under ~60 lines. Commands and deny-lists only.
+Short facts for ADP Prove. Keep under ~60 lines. Commands and deny-lists only.
 
 ## Project / stack
 
@@ -13,7 +13,7 @@ Short always-on facts for ADP Prove. Keep under ~60 lines. Commands and deny-lis
 
 ### Run these (after meaningful changes, when relevant)
 
-- 
+- <one real command from this project>
 
 ### Never run these (unless the user explicitly asks)
 
@@ -35,7 +35,8 @@ Short always-on facts for ADP Prove. Keep under ~60 lines. Commands and deny-lis
 
 ## ADP
 
-- Use `/cursor-tools-adp`: Anchor → Delta → Prove.
+- Use `/andreev-sy-cursor-tools-adp`: Acceptance → Anchor → Delta → Prove (full AC evidence before stop).
+
 - Result must be a mergeable diff on an existing path — not a teaching sample, toy module, or bypass hack.
 
 ## User prefs
