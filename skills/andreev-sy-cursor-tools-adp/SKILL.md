@@ -46,28 +46,32 @@ Only then continue to Anchor. Prefer a short blocking questionnaire over essays.
 
 ## Stack (order)
 
-### 0) Intake form (before code — prefer Cursor UI)
+### 0) Intake (before code)
 
-Cursor **cannot** open a custom free-text HTML form from a skill. Closest built-in UI: **AskQuestion** (cards with single/multi-select; multi-select = checkboxes).
+Cursor has **no** custom skill form UI. `AskQuestion` cards often missing in Agent — do **not** dump English option ids into chat.
 
 If the user only invoked this skill (or message has no clear Need + constraints):
 
-1. **Immediately** call `AskQuestion` (do not ask the same choices as plain markdown lists). Title e.g. `ADP intake`.
-2. Include at least:
+1. Optionally try `AskQuestion` **once** (Russian labels). If unavailable / fails → step 2.
+2. **Default:** post exactly this fill-in block (Russian), then **stop and wait**. No code. No long preface.
 
-   - `prove` (single): `project.md Run these` | `I will type the command` | `unknown — need bootstrap`
-   - `forbids` (multi): `no new framework` | `no one-off script` | `no subsystem rewrite` | `no layer bypass` | `none of these`
-   - `anchor_known` (single): `I will name neighbor/path next` | `search the repo for me` | `unclear`
+````markdown
+Заполни и пришли одним сообщением:
 
-3. After answers: ask **in chat** for free text (AskQuestion has no text fields):
-   - **Need** (what must work)
-   - **Anchor hint** (if they chose to name it)
+**Need:** (что должно заработать)
+**Anchor:** (путь/сосед) или напиши: найди в репо
+**Prove:** `project.md` | команда: … | нужен bootstrap
+**Нельзя:** (через запятую, что актуально)
+- новый framework
+- one-off скрипт
+- rewrite подсистемы
+- обход слоя якоря
+- (другое: …)
+````
 
-4. Then continue from Intent → Acceptance. Still vague → Clarify (STOP E), still prefer `AskQuestion` for fixed choices.
+3. After they reply → Intent → Acceptance. Still vague → Clarify (STOP E).
 
-Skip step 0 only if the user message already has Need + forbids/oracle clear enough to draft Acceptance.
-
-If `AskQuestion` is unavailable: same questions in short chat form, then wait.
+Skip step 0 only if Need + constraints are already clear enough to draft Acceptance.
 
 ### 1) Intent — one sentence
 
