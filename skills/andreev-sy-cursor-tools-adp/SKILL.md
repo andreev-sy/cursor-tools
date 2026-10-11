@@ -44,36 +44,16 @@ Only then continue to Anchor. Prefer a short blocking questionnaire over essays.
 - Bulk-read of the whole repo.
 - Declaring done and hoping the user will QA.
 
+## How the user starts
+
+They write a normal task in the same message as the skill, e.g.  
+`/andreev-sy-cursor-tools-adp` + what to do, optional neighbor/path, optional prove command.
+
+Do **not** send fill-in templates, AskQuestion intake forms, or “заполни поля” rituals.  
+If the skill was invoked with no task text: ask one short question — «Что сделать?» — and wait.  
+If the task is vague: Clarify (STOP E). If clear enough: go straight through the stack.
+
 ## Stack (order)
-
-### 0) Intake (before code)
-
-Cursor has **no** custom skill form UI. `AskQuestion` cards often missing in Agent — do **not** dump English option ids into chat.
-
-If the user only invoked this skill (or message has no clear Need + constraints):
-
-1. Skip AskQuestion for intake (unreliable in Agent).
-2. Reply with **only** the fill-in below, then **stop and wait**.
-   - Must be a **fenced code block** (` ```text ` … ` ``` `).
-   - **One field per line.** Never collapse Need/Anchor/Prove/Нельзя into one paragraph.
-   - No preface longer than one short sentence. No English option ids.
-
-Exact payload (copy structure, keep newlines):
-
-````
-```text
-Need:
-Anchor: найди в репо
-Prove: project.md
-Нельзя: новый framework, one-off скрипт, rewrite подсистемы, обход слоя якоря
-```
-````
-
-User edits that block (or pastes a filled copy) and sends it back.
-
-3. After they reply → Intent → Acceptance. Still vague → Clarify (STOP E).
-
-Skip step 0 only if Need + constraints are already clear enough to draft Acceptance.
 
 ### 1) Intent — one sentence
 

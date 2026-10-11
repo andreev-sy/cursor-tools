@@ -42,4 +42,4 @@ Skills в Cursor без `/` в имени папки → `andreev-sy-cursor-tool
 ## Как пользоваться
 
 1. `/andreev-sy-cursor-tools-project-bootstrap` — пишет `.cursor/kits/andreev-sy/cursor-tools/project.md` и ссылку в `AGENTS.md`.  
-2. `/andreev-sy-cursor-tools-adp` — пришлёт короткий блок полей (Need/Anchor/Prove/Нельзя); заполни и ответь. См. `examples/prompt-adp.md`.
+2. `/andreev-sy-cursor-tools-adp` + обычный текст задачи (см. `examples/prompt-adp.md`). Без форм.
